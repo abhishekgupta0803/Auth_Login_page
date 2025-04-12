@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <a href="http://localhost:8080/logout">Logout</a>
+    </div>
+    <table border="3">
+        <tr>
+            <td>ID</td>
+            <td>Username</td>
+            <td>Age</td>
+
+        </tr>
+       
+          <%for(user of users){%>
+            <tr>
+                <td><%= user._id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.age %></td>
+            </tr>
+            <% } %>
+       
+    </table>
+</body>
+</html>
