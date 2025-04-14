@@ -9,14 +9,26 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const session = require("express-session");
+const flash = require("connect-flash");
+
+app.use(session({
+    secret:"mnvjn",
+    resave:false,
+    saveUninitialized:true
+}));
+
+app.use(flash());
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-
-//register
+//register //
 app.get("/register", (req, res) => {
     res.render("register");
 });
@@ -27,7 +39,10 @@ app.post("/register", async (req, res) => {
    let user = await userModel.findOne({email:email});
 
    if(user) {
-     return res.status(401).send("You already have an account, please login.");
+    //  return res.status(401).send("You already have an account, please login.");
+        req.flash("error","invalid message");
+        res.redirect("/login");
+
     }
 
     bcrypt.genSalt(10, function (err, salt) {
