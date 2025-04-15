@@ -40,7 +40,7 @@ app.post("/register", async (req, res) => {
 
    if(user) {
     //  return res.status(401).send("You already have an account, please login.");
-        req.flash("error","invalid message");
+        req.flash("error","invalid message ");
         res.redirect("/login");
 
     }
