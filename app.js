@@ -11,7 +11,6 @@ const jwt = require('jsonwebtoken');
 
 const session = require("express-session");
 const flash = require("connect-flash");
-
 app.use(session({
     secret:"mnvjn",
     resave:false,
